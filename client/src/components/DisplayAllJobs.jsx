@@ -29,7 +29,7 @@ const DisplayAllJobs = (props) => {
             selector: row => <>
                                 <Link to={`/jobs/${row._id}`}>View All Details</Link>{' '}
                                 | <Link to={`/jobs/compare/${row._id}`}>Compare This Job</Link>{' '}
-                                | <Link to={`/jobs/app/${row._id}`}>Track Applcation</Link>
+                                |  {row.applicationStatus ? <Link to={`/jobs/app/${row._id}`}>Update Application</Link> : <Link to={`/jobs/app/${row._id}`}>Start tracking Application</Link>}
                             </>
         },
     ];

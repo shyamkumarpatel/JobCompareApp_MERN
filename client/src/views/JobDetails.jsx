@@ -44,6 +44,14 @@ const DisplayJobCard = () => {
                                     <td>{job.companyName}</td>
                                 </tr>
                                 <tr>
+                                    <th>Data Entered in App (yyyy-mm-dd):</th>
+                                    <td>{job.createdAt.slice(0,10)}</td>
+                                </tr>
+                                <tr>
+                                    <th>Last updated (yyyy-mm-dd):</th>
+                                    <td>{job.updatedAt.slice(0,10)}</td>
+                                </tr>
+                                <tr>
                                     <th>Location</th>
                                     <td>{job.location}</td>
                                 </tr>

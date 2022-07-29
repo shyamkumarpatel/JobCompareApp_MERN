@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from '../components/NavigationBar';
 
 const CreateJobPage = () => {
     const [title, setTitle] = useState("");
@@ -32,6 +33,9 @@ const CreateJobPage = () => {
     }
 
   return (
+    <>
+        <NavigationBar/>
+        
     <Card className="m-3 ">
         <Card.Header as="h1">
             <Row>
@@ -70,18 +74,19 @@ const CreateJobPage = () => {
                         {error.hasOwnProperty("source")&& <Form.Text>{error.source.message}</Form.Text>}
                         </Form.Group>
                     </Col>
-                </Row>
-                <Row>
-                    <Form.Group className="mb-3" controlId="description">
-                        <Form.Label>Job Description: *</Form.Label>
-                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
-                        {error.hasOwnProperty("description")&& <Form.Text>{error.description.message}</Form.Text>}
-                    </Form.Group>
-                </Row>
-                <Row><Button variant="primary" size="lg" type="submit">Add Job</Button></Row>
-            </Form>
-        </Card.Body>
-    </Card>
+                    </Row>
+                    <Row>
+                        <Form.Group className="mb-3" controlId="description">
+                            <Form.Label>Job Description: *</Form.Label>
+                            <Form.Control as="textarea" rows={3} onChange={(e) => setDescription(e.target.value)} />
+                            {error.hasOwnProperty("description")&& <Form.Text>{error.description.message}</Form.Text>}
+                        </Form.Group>
+                    </Row>
+                    <Row><Button variant="primary" size="lg" type="submit">Add Job</Button></Row>
+                </Form>
+            </Card.Body>
+        </Card>
+    </>
   )
 }
 

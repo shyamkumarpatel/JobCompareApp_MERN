@@ -54,7 +54,7 @@ const CompareSeclectionPage = () => {
             {
                 jobs ? 
                 <DataTable
-                    title="Job Postings"
+                    title="Choose a job posting entry for Comparison with above:"
                     columns={columns}
                     data={jobs}
                     expandableRows

@@ -12,9 +12,9 @@ const DisplayJobSummary = (props) => {
             <Row>Title: {job.title}</Row>
             <Row>Company: {job.companyName}</Row>
             <Row>Location: {job.location}</Row>
-            <Row>Source: {job.source.slice(0,75)}...</Row>            
-            <Row>Description: {job.description.slice(0,200)}...
-            </Row>
+            <Row>Data Entered in App (yyyy-mm-dd): {job.createdAt.slice(0,10)}</Row>
+            <Row>Last Updated on (yyyy-mm-dd): {job.createdAt.slice(0,10)}</Row>
+            <Row>Description: {job.description.slice(0,200)}...</Row>
         </Card.Body>
     </Card>
   )
