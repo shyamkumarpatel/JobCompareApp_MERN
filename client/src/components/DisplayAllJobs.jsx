@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayJobSummary from './DisplayJobSummary';
+import NavigationBar from './NavigationBar';
 
 const DisplayAllJobs = (props) => {
     const {jobs} = props;
@@ -33,6 +34,8 @@ const DisplayAllJobs = (props) => {
         },
     ];
   return (
+    <>
+    <NavigationBar/>
     <div className="m-3">
         <DataTable
             title="Job Postings"
@@ -42,6 +45,7 @@ const DisplayAllJobs = (props) => {
             expandableRowsComponent={ExpandedComponent}
         />
     </div>
+    </>
   )
 }
 

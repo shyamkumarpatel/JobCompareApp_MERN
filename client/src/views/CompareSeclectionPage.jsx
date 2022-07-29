@@ -11,12 +11,13 @@ import DisplayJobSummary from '../components/DisplayJobSummary';
 const CompareSeclectionPage = () => {
     const {id} = useParams();
     const [jobs, setJobs] = useState([]);
+    const [job, setJob] = useState();
 
-    const handleDelete = () =>{
-        console.log("jobs =", jobs);
-        
-    }
     useEffect(() => {
+        axios.get(`http://localhost:8000/api/jobs/${id}`)
+        .then(res => setJob(res.data))
+        .catch(err => console.log(err));
+
         axios.get(`http://localhost:8000/api/jobs`)
             .then(res => setJobs(res.data.filter(i => i._id !== id)))
             .catch(err => console.log(err));
@@ -46,14 +47,19 @@ const CompareSeclectionPage = () => {
     ];
   return (
     <div className="m-3">
-        <button type="button" onClick={handleDelete}>Compare Job</button>
-        <DataTable
-            title="Job Postings"
-            columns={columns}
-            data={jobs}
-            expandableRows
-            expandableRowsComponent={ExpandedComponent}
-        />
+        {job ? <DisplayJobSummary job={job}/> : <p>Loading...</p>}
+        {
+            jobs ? 
+            <DataTable
+                title="Job Postings"
+                columns={columns}
+                data={jobs}
+                expandableRows
+                expandableRowsComponent={ExpandedComponent}
+            />
+            :
+            <p>Loading...</p>
+        }
     </div>
   )
 }
