@@ -1,11 +1,27 @@
 import React from 'react';
+import {useParams} from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import DataTable from 'react-data-table-component';
 import {Link} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import DisplayJobSummary from './DisplayJobSummary';
 
-const DisplayAllJobs = (props) => {
-    const {jobs} = props;
+import DisplayJobSummary from '../components/DisplayJobSummary';
+
+const CompareSeclectionPage = () => {
+    const {id} = useParams();
+    const [jobs, setJobs] = useState([]);
+
+    const handleDelete = () =>{
+        console.log("jobs =", jobs);
+        
+    }
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/jobs`)
+            .then(res => setJobs(res.data.filter(i => i._id !== id)))
+            .catch(err => console.log(err));
+    }, [id]);
+
     const ExpandedComponent = ({ data }) => <pre><DisplayJobSummary job={data}/></pre>;
     const columns = [
         {
@@ -25,15 +41,12 @@ const DisplayAllJobs = (props) => {
         },
         {
             name: 'Actions',
-            selector: row => <>
-                                <Link to={`/jobs/${row._id}`}>View All Details</Link>{' '}
-                                | <Link to={`/jobs/compare/${row._id}`}>Compare This Job</Link>{' '}
-                                | <Link to={`/jobs/app/${row._id}`}>Track Applcation</Link>
-                            </>
+            selector: row => <><Link to={`/jobs/compare/${id}/${row._id}`}>Compare With This Job Posting</Link></>
         },
     ];
   return (
     <div className="m-3">
+        <button type="button" onClick={handleDelete}>Compare Job</button>
         <DataTable
             title="Job Postings"
             columns={columns}
@@ -45,4 +58,4 @@ const DisplayAllJobs = (props) => {
   )
 }
 
-export default DisplayAllJobs
+export default CompareSeclectionPage

@@ -12,6 +12,12 @@ module.exports.findOneItem = (req, res) => {
   .catch(err => res.json(err));
 };
 
+module.exports.findWithoutOneItem = (req, res) => {
+  Jobs.findOne({ _id: { $nin: req.params.id  }})
+  .then(oneSinglePet => res.json(oneSinglePet))
+  .catch(err => res.json(err));
+};
+
 module.exports.createNew = (req, res) => {
   Jobs.create(req.body)
     .then(newlyCreatedPet => res.json(newlyCreatedPet))

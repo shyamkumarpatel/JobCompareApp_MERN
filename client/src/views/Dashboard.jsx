@@ -11,6 +11,7 @@ const Dashboard = () => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/jobs`)
             .then(res => setJobs(res.data))
+            .catch(err => console.log(err));
     }, []);
 
   return (
