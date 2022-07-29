@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component';
 import {Link} from 'react-router-dom';
 
 import DisplayJobSummary from '../components/DisplayJobSummary';
+import NavigationBar from '../components/NavigationBar';
 
 const CompareSeclectionPage = () => {
     const {id} = useParams();
@@ -46,20 +47,23 @@ const CompareSeclectionPage = () => {
         },
     ];
   return (
-    <div className="m-3">
-        {job ? <DisplayJobSummary job={job}/> : <p>Loading...</p>}
-        {
-            jobs ? 
-            <DataTable
-                title="Job Postings"
-                columns={columns}
-                data={jobs}
-                expandableRows
-                expandableRowsComponent={ExpandedComponent}
-            />
-            :
-            <p>Loading...</p>
-        }
+    <div>
+        <NavigationBar/>
+        <div className="m-3">
+            {job ? <DisplayJobSummary job={job}/> : <p>Loading...</p>}
+            {
+                jobs ? 
+                <DataTable
+                    title="Job Postings"
+                    columns={columns}
+                    data={jobs}
+                    expandableRows
+                    expandableRowsComponent={ExpandedComponent}
+                />
+                :
+                <p>Loading...</p>
+            }
+        </div>
     </div>
   )
 }

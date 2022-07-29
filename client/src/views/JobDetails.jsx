@@ -6,6 +6,7 @@ import {useParams, Link} from 'react-router-dom';
 import { Card, Table, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import NavigationBar from '../components/NavigationBar';
 
 const DisplayJobCard = () => {
     const {id} = useParams();
@@ -18,6 +19,7 @@ const DisplayJobCard = () => {
     }, [id]);
   return (
     <div>
+    <NavigationBar/>
     {
         job ?
             <Card className="m-3 ">

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import {Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from '../components/NavigationBar';
 
 const CompareJobPage = () => {
     const {id, id2} = useParams();
@@ -23,6 +24,7 @@ const CompareJobPage = () => {
 
   return (
     <div>
+        <NavigationBar/>
         { job && job2 ?
         <Table bordered hover className="text-lg-center align-middle m-2">
             <thead  className="table-striped">      
